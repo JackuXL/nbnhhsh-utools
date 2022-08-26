@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>能不能好好说话？</title>
+	<script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+	<meta name="viewport" content="width=device-width,user-scalable=0">
+	<meta name="discription" content="拼音首字母缩写释义工具">
+</head>
+<body style="padding: 50px;">
+	<div class="mdui-typo">
+        <h1>能不能好好说话？ <small>拼音首字母缩写释义工具</small></h1>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">缩写</label>
+            <textarea class="mdui-textfield-input" id="text"></textarea>
+          </div> 
+          <h3>原文 <small>输入文本后自动查询</small></h3>
+          <ul>
+          </ul>
+          <footer>
+            <div class="mdui-typo-caption">Made with ❤ By JackuXL</div>
+            <div class="mdui-typo-caption"><a onclick="utools.shellOpenExternal('https://github.com/JackuXL/nbnhhsh-utools')">开源地址</a> | 如有帮助欢迎捐赠</div>
+          </footer>
+          
+        <script>
+            $('#text').bind('input propertychange', function() {
+                $("ul").html("")
+                $.ajax({
+                    type: "POST",
+                    url: "https://lab.magiconch.com/api/nbnhhsh/guess",
+                    data: {
+                        text: $("#text").val()
+                    },
+                    success: function( result ) {
+                        result[0].trans.forEach(element => {
+                            $("ul").append("<li>"+element+"</li>")
+                        });
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

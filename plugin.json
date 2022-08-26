@@ -1,0 +1,18 @@
+{
+	"main": "index.html",
+	"logo": "logo.png",
+	"features": [
+		{
+		  "code": "nbnhhsh",
+		  "explain": "拼音首字母缩写释义工具",
+			"cmds":[
+				{
+					"type": "over",
+					"label": "能不能好好说话",
+					"minLength": 1,
+					"maxLength": 500
+				}
+			]
+		}
+	]
+}
